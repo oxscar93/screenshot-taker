@@ -1,7 +1,9 @@
 const { ipcMain, dialog } = require('electron');
 const puppeteer = require('puppeteer');
-const validUrl = require('../utils/utils')
+const validUrl = require('../../utils/utils')
+const { strategies} = require('./strategies/fileStrategy');
 
+//setup of screenshot handler
 const setupScreenshotHandler = () => {
     ipcMain.on('take-screenshot', async (event, formData) => {
         if (!validUrl(formData.url, ['http', 'https'])){
@@ -46,12 +48,8 @@ const setupScreenshotHandler = () => {
     }
     
     const saveScreenShot = async (page, filePath, fileFormat) =>{
-        if (fileFormat == 'pdf'){
-            await page.pdf({ path: filePath, format: 'A4' });
-        }
-        else{
-            await page.screenshot({ path: filePath }); 
-        }
+        await strategies.find(h => h.canHandle(fileFormat))
+                .handle(page, filePath);
     }
 }
 

@@ -1,7 +1,7 @@
 
 const { app, BrowserWindow} = require('electron');
 const path = require('path');
-const setupScreenshotHandler = require('./handlers/screenshot');
+const setupScreenshotHandler = require('./handlers/screenshot/screenshot');
 
 function setHandlers(){
     setupScreenshotHandler();

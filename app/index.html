@@ -34,7 +34,7 @@
 
             document.getElementById('form').addEventListener('submit', (event) => {
                 event.preventDefault();
-                clearErrors();
+                clearAll();
                 
                 const formData = {
                     url: event.target.url.value,
@@ -53,7 +53,8 @@
             });
          });
 
-         function clearErrors(){
+         function clearAll(){
+            document.getElementById('output').innerText = "";
             document.getElementById('error').innerText = "";
          }
     </script>
