@@ -8,3 +8,7 @@ Run `npm install`
 # Startup
 Run `npm start`  
 
+# Run tests
+Run `npm test`  
+
+
